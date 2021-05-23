@@ -1,6 +1,6 @@
 // import { createStore, combineReducers } from "./MyRedux";
 import { createStore, combineReducers } from "redux";
-
+import styles from "./styles.css";
 /** State Management **/
 
 /* action specifiers */
