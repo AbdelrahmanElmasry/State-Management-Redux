@@ -44,15 +44,17 @@ function reducer(state = initialState, action) {
         ...selectedTodo,
         completed: !selectedTodo.completed
       };
-      const beforeSelected = state.todoItems.slice(0, selectedTodoIndex);
-      const afterSelected =
-        todoId !== state.todoItems.length - 1
-          ? state.todoItems.slice(selectedTodoIndex + 1)
-          : [];
-
+      // const beforeSelected = state.todoItems.slice(0, selectedTodoIndex);
+      // const afterSelected =
+      //   todoId !== state.todoItems.length - 1
+      //     ? state.todoItems.slice(selectedTodoIndex + 1)
+      //     : [];
+      const newTodo_items = [...state.todoItems];
+      // replace the update items
+      newTodo_items.splice(selectedTodoIndex, 1, updatedTodo);
       return {
         ...state,
-        todoItems: [...beforeSelected, updatedTodo, ...afterSelected]
+        todoItems: [...newTodo_items]
       };
     }
 
@@ -80,6 +82,8 @@ form.onsubmit = (e) => {
   todoItem.completed = completed;
   // Dispatch an action to add a new todo
   dispatch({ type: ADD_TODO, payload: todoItem });
+  //Reset form
+  e.target.reset();
   console.log(getState());
 };
 
